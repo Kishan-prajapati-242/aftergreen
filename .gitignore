@@ -1,0 +1,57 @@
+# Local runtime, editors and secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+.npmrc
+.netrc
+node_modules/
+.svelte-kit/
+.wrangler/
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
+
+# Imported evidence and collected bundles
+imports/
+raw-logs/
+*.local.json
+
+# Validation and held-out evaluation data
+eval/heldout/
+eval/validation/
+eval/test/
+
+# Downloaded models, generated binaries, archives and editing leftovers
+models/
+bin/
+*.zip
+*.orig
+
+# Agent configuration: local only
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+.claude/
+.mcp.json
+
+# Internal planning and review notes, and private working files: local only
+docs/project-design.md
+docs/github-probe-g3a.md
+docs/review-record.md
+docs/sources.md
+private/
+private-notes/
+session-records/
+PRIVATE-JOURNAL.md
+*Private-Journal*
+*private-journal*

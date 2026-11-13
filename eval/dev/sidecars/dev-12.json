@@ -1,0 +1,207 @@
+{
+  "schema": "aftergreen.eval-sidecar.v0",
+  "evaluator_only": "Evaluator data. Never give this file to the product, a model or retrieval.",
+  "bundle": "dev-12.json",
+  "label": "incompatible-matrix-job",
+  "evidence_class": "simulated",
+  "scenario": "Simulated case; not a real GitHub run. The supplied baseline is a passing run of a different job (lint, no matrix).",
+  "expected": {
+    "decision": "incompatible",
+    "rows": [
+      {
+        "field": "run_identity",
+        "outcome": "distinct_runs",
+        "effect": "none"
+      },
+      {
+        "field": "workflow",
+        "outcome": "same_workflow",
+        "effect": "none"
+      },
+      {
+        "field": "branch",
+        "outcome": "same_branch",
+        "effect": "none"
+      },
+      {
+        "field": "job",
+        "outcome": "job_identity_unknown",
+        "effect": "unknown"
+      },
+      {
+        "field": "matrix_dimensions",
+        "outcome": "different_dimensions",
+        "effect": "incompatible"
+      },
+      {
+        "field": "matrix_values",
+        "outcome": "not_compared",
+        "effect": "none"
+      },
+      {
+        "field": "runner_os",
+        "outcome": "same_os",
+        "effect": "none"
+      },
+      {
+        "field": "runner_arch",
+        "outcome": "same_arch",
+        "effect": "none"
+      },
+      {
+        "field": "runner_labels",
+        "outcome": "same_labels",
+        "effect": "none"
+      },
+      {
+        "field": "failed_checkout",
+        "outcome": "checkout_matches_head",
+        "effect": "none"
+      },
+      {
+        "field": "baseline_checkout",
+        "outcome": "checkout_matches_head",
+        "effect": "none"
+      },
+      {
+        "field": "file_revisions",
+        "outcome": "revisions_consistent",
+        "effect": "none"
+      },
+      {
+        "field": "file_coverage",
+        "outcome": "files_complete",
+        "effect": "none"
+      },
+      {
+        "field": "log_coverage",
+        "outcome": "logs_fully_read",
+        "effect": "none"
+      }
+    ],
+    "observations": [
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "js_error,test_failure"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 51,
+            "end": 52
+          }
+        ]
+      },
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "actions_error"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "exit_code",
+        "run_role": "failed",
+        "fields": {
+          "exit_code": "1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "error_step",
+        "run_role": "failed",
+        "fields": {
+          "step": "npm test"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 45,
+            "end": 45
+          },
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "runner_image",
+        "run_role": "failed",
+        "fields": {
+          "image": "ubuntu-24.04",
+          "version": "20261026.1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 8,
+            "end": 9
+          }
+        ]
+      },
+      {
+        "kind": "node_version",
+        "run_role": "failed",
+        "fields": {
+          "version": "20.19.5",
+          "arch": "x64"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 38,
+            "end": 38
+          }
+        ]
+      },
+      {
+        "kind": "checkout_sha_shown",
+        "run_role": "failed",
+        "fields": {
+          "sha": "fa11ed1200000000000000000000000000000000",
+          "matches_head": "yes"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 33,
+            "end": 33
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      {
+        "code": "comparison_suppressed",
+        "reason": "incompatible"
+      },
+      {
+        "code": "source_partial_lines",
+        "run_role": "baseline",
+        "source_id": "baseline.job-log"
+      },
+      {
+        "code": "source_partial_lines",
+        "run_role": "failed",
+        "source_id": "failed.job-log"
+      }
+    ]
+  }
+}

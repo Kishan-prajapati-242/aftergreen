@@ -1,0 +1,86 @@
+{
+  "schema": "aftergreen.bundle.v1",
+  "case_id": "case-v1-simulated",
+  "evidence_class": "simulated",
+  "created_at": "2026-11-10T12:00:00Z",
+  "collection": {
+    "tool": "hand-written",
+    "api_version": "2026-03-10",
+    "metadata_authentication": "none"
+  },
+  "redaction": {
+    "status": "none"
+  },
+  "runs": [
+    {
+      "role": "failed",
+      "repository": {
+        "id": 1002,
+        "full_name": "example-org/another-repo",
+        "visibility": "public"
+      },
+      "workflow": {
+        "id": 2002,
+        "path": ".github/workflows/test.yaml"
+      },
+      "run_id": 3002,
+      "run_attempt": 2,
+      "attempt_started_at": "2026-11-09T11:00:00Z",
+      "event": "push",
+      "branch": "release/1.x",
+      "head_sha": "abcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "job": {
+        "id": 4002,
+        "name": "build",
+        "conclusion": "failure",
+        "started_at": "2026-11-09T11:00:10Z",
+        "completed_at": "2026-11-09T11:00:10Z"
+      },
+      "checkout": {
+        "status": "unresolved",
+        "reason": "log_missing",
+        "evidence": []
+      },
+      "matrix": {
+        "status": "none"
+      },
+      "runner": {
+        "os": "unknown",
+        "arch": "unknown",
+        "labels": [],
+        "evidence": []
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "failed.job_log",
+      "kind": "job_log",
+      "run_role": "failed",
+      "status": "missing",
+      "missing_reason": "access_denied"
+    },
+    {
+      "id": "failed.lockfile",
+      "kind": "lockfile",
+      "run_role": "failed",
+      "status": "missing",
+      "missing_reason": "not_collected"
+    },
+    {
+      "id": "failed.manifest",
+      "kind": "manifest",
+      "run_role": "failed",
+      "status": "missing",
+      "missing_reason": "not_collected"
+    },
+    {
+      "id": "failed.workflow",
+      "kind": "workflow_file",
+      "run_role": "failed",
+      "status": "missing",
+      "missing_reason": "not_collected"
+    }
+  ],
+  "evidence_sha256": "43331f0003e0af4a0302315261c1d14cbbc77e8fa8f7e977f3c73f42c092cc2d"
+}

@@ -1,0 +1,1167 @@
+{
+  "schema": "aftergreen.bundle-cases.v1",
+  "contract": "aftergreen.bundle.v1",
+  "cases": [
+    {
+      "id": "valid-collected-job-log",
+      "note": "synthetic data in the collected_public shape: a present, redacted, selected job log; three sources not collected",
+      "input": {
+        "file": "valid-collected-job-log.json"
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b"
+      }
+    },
+    {
+      "id": "valid-simulated-log-missing",
+      "note": "simulated: the job log was refused, nothing else collected, redaction none",
+      "input": {
+        "file": "valid-simulated-log-missing.json"
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "43331f0003e0af4a0302315261c1d14cbbc77e8fa8f7e977f3c73f42c092cc2d"
+      }
+    },
+    {
+      "id": "valid-producer-fixture",
+      "note": "simulated: the Go producer's output for the offline fixture collection in collector/github/bundle_test.go",
+      "input": {
+        "file": "valid-producer-fixture.json"
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "e84636121f38103f29cdb919e3d6429605d9b1983c85c47a5f367db9018793be"
+      }
+    },
+    {
+      "id": "accept-missing-workflow-without-path",
+      "note": "a missing file may omit path",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"missing\",\n      \"path\": \".github/workflows/ci.yml\",\n      \"missing_reason\": \"not_collected\"",
+            "with": "\"status\": \"missing\",\n      \"missing_reason\": \"not_collected\""
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"af2d2daa5a770f2e9e4cdcfcdd7f10db8ebaf6527ccc0d01bbbd28b227feff30\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "af2d2daa5a770f2e9e4cdcfcdd7f10db8ebaf6527ccc0d01bbbd28b227feff30"
+      }
+    },
+    {
+      "id": "accept-extent-prefix",
+      "note": "extent prefix",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"extent\": \"complete\"",
+            "with": "\"extent\": \"prefix\""
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"6d0a25ecfbb01a9a3fef376d0b7af8687106a6da8df49006cbc5e87375d22d99\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "6d0a25ecfbb01a9a3fef376d0b7af8687106a6da8df49006cbc5e87375d22d99"
+      }
+    },
+    {
+      "id": "accept-extent-partial",
+      "note": "extent partial",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"extent\": \"complete\"",
+            "with": "\"extent\": \"partial\""
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"bfab855eda790e2faf71b602442ed23380dbe9b460face8f8a4c8c0cf9419b20\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "bfab855eda790e2faf71b602442ed23380dbe9b460face8f8a4c8c0cf9419b20"
+      }
+    },
+    {
+      "id": "accept-authentication-none",
+      "note": "a log requested without a credential",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"authentication\": \"gh_cli\"",
+            "with": "\"authentication\": \"none\""
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"d2077981bb2be93d302c1affa5b06e9c896690ace1fc1b8599c8b6073dcfa795\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "d2077981bb2be93d302c1affa5b06e9c896690ace1fc1b8599c8b6073dcfa795"
+      }
+    },
+    {
+      "id": "accept-tab-in-line",
+      "note": "tab is allowed in line text",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "Cleaning up orphan processes",
+            "with": "Cleaning\\tup orphan processes"
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"e3a04bab676c91b90c93fb737c1304e1a9be0da7bfa1f1eef2a94a4a976778cb\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "e3a04bab676c91b90c93fb737c1304e1a9be0da7bfa1f1eef2a94a4a976778cb"
+      }
+    },
+    {
+      "id": "accept-matrix-resolved",
+      "note": "a resolved matrix value is a v1 display string",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"matrix\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"workflow_not_collected\",\n        \"evidence\": []\n      },",
+            "with": "\"matrix\": {\n        \"status\": \"resolved\",\n        \"values\": [\n          {\n            \"key\": \"browser\",\n            \"value\": \"chromium\"\n          }\n        ],\n        \"evidence\": []\n      },"
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"d47b2b3c6c201299bce17977865010f214a2618049fd352d2d1615e6f2780db9\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "d47b2b3c6c201299bce17977865010f214a2618049fd352d2d1615e6f2780db9"
+      }
+    },
+    {
+      "id": "accept-format-character-in-line",
+      "note": "format characters such as U+202E are accepted; later stages must show them",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "Run npm test",
+            "with": "Run npm test \\u202e"
+          },
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"9c30db7d66e226e517878a0163e1edfa696f282a55da4b9c6f0dc6bab480fb06\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "9c30db7d66e226e517878a0163e1edfa696f282a55da4b9c6f0dc6bab480fb06"
+      }
+    },
+    {
+      "id": "input-too-large",
+      "note": "131,073 bytes",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "pad_to_bytes": 131073
+      },
+      "expect": {
+        "result": "reject",
+        "code": "input_too_large"
+      }
+    },
+    {
+      "id": "invalid-utf8",
+      "note": "a raw 0xFF byte",
+      "input": {
+        "raw_hex": "7b22736368656d61223a22ff227d"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "invalid-json-trailing-comma",
+      "note": "trailing comma",
+      "input": {
+        "raw": "{\"schema\": \"aftergreen.bundle.v1\",}"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_json"
+      }
+    },
+    {
+      "id": "nesting-too-deep",
+      "note": "17 nested arrays",
+      "input": {
+        "raw": "[[[[[[[[[[[[[[[[[0]]]]]]]]]]]]]]]]]"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "nesting_too_deep"
+      }
+    },
+    {
+      "id": "matrix-value-c1-control",
+      "note": "v1 display strings forbid C1 controls, matrix values included (U+009B is the 8-bit CSI)",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"matrix\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"workflow_not_collected\",\n        \"evidence\": []\n      },",
+            "with": "\"matrix\": {\n        \"status\": \"resolved\",\n        \"values\": [\n          {\n            \"key\": \"browser\",\n            \"value\": \"ubuntu\\u009b2J\"\n          }\n        ],\n        \"evidence\": []\n      },"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/matrix/values/0/value"
+      }
+    },
+    {
+      "id": "duplicate-key",
+      "note": "case_id twice",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"synthetic-collected-shape\",",
+            "with": "\"case_id\": \"synthetic-collected-shape\",\n  \"case_id\": \"case-v1-other\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "duplicate_key"
+      }
+    },
+    {
+      "id": "invalid-number-fraction",
+      "note": "1.0 is not an integer",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"run_attempt\": 1,",
+            "with": "\"run_attempt\": 1.0,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "evaluator-field",
+      "note": "an expected answer in an input bundle",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"synthetic-collected-shape\",",
+            "with": "\"case_id\": \"synthetic-collected-shape\",\n  \"expected_diagnosis\": \"x\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "evaluator_field",
+        "pointer": "/expected_diagnosis"
+      }
+    },
+    {
+      "id": "unknown-field-bundle",
+      "note": "unknown top-level member",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"created_at\": \"2026-11-10T12:00:00Z\",",
+            "with": "\"created_at\": \"2026-11-10T12:00:00Z\",\n  \"notes\": \"x\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/notes"
+      }
+    },
+    {
+      "id": "unknown-field-collection",
+      "note": "unknown collection member",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"tool\": \"aftergreen-collect\",",
+            "with": "\"tool\": \"aftergreen-collect\",\n    \"host\": \"github.com\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/collection/host"
+      }
+    },
+    {
+      "id": "unknown-field-source",
+      "note": "a source cannot carry a URL",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"kind\": \"job_log\",",
+            "with": "\"kind\": \"job_log\",\n      \"url\": \"https://example.invalid/log\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/sources/0/url"
+      }
+    },
+    {
+      "id": "schema-v0",
+      "note": "a v1 validator accepts only v1",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"schema\": \"aftergreen.bundle.v1\"",
+            "with": "\"schema\": \"aftergreen.bundle.v0\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/schema"
+      }
+    },
+    {
+      "id": "evidence-class-unknown",
+      "note": "unknown evidence class",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"evidence_class\": \"collected_public\"",
+            "with": "\"evidence_class\": \"collected\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/evidence_class"
+      }
+    },
+    {
+      "id": "created-at-not-a-date",
+      "note": "November 31",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"created_at\": \"2026-11-10T12:00:00Z\"",
+            "with": "\"created_at\": \"2026-11-31T12:00:00Z\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/created_at"
+      }
+    },
+    {
+      "id": "collection-tool-invalid",
+      "note": "tool must be an id",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"tool\": \"aftergreen-collect\"",
+            "with": "\"tool\": \"Aftergreen Collect\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/collection/tool"
+      }
+    },
+    {
+      "id": "collection-api-version-invalid",
+      "note": "February 30",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"api_version\": \"2026-03-10\"",
+            "with": "\"api_version\": \"2026-02-30\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/collection/api_version"
+      }
+    },
+    {
+      "id": "metadata-authenticated",
+      "note": "v1 metadata is requested without a credential",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"metadata_authentication\": \"none\"",
+            "with": "\"metadata_authentication\": \"gh_cli\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/collection/metadata_authentication"
+      }
+    },
+    {
+      "id": "redaction-none-with-rules",
+      "note": "rules is not allowed when status is none",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"applied\",",
+            "with": "\"status\": \"none\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction/rules"
+      }
+    },
+    {
+      "id": "redaction-applied-without-rules",
+      "note": "applied needs rules",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"applied\",\n    \"rules\": \"aftergreen.redaction.1\"",
+            "with": "\"status\": \"applied\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction/rules"
+      }
+    },
+    {
+      "id": "redaction-unknown-rules",
+      "note": "unknown rule set",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"rules\": \"aftergreen.redaction.1\"",
+            "with": "\"rules\": \"aftergreen.redaction.2\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction/rules"
+      }
+    },
+    {
+      "id": "redaction-status-unknown",
+      "note": "unknown redaction status",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"applied\",",
+            "with": "\"status\": \"partial\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction/status"
+      }
+    },
+    {
+      "id": "collected-without-redaction",
+      "note": "a collected bundle must say redaction was applied",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"applied\",\n    \"rules\": \"aftergreen.redaction.1\"",
+            "with": "\"status\": \"none\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction/status"
+      }
+    },
+    {
+      "id": "two-runs",
+      "note": "v1 holds exactly one run",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"runs\": [\n    {",
+            "with": "\"runs\": [\n    {\"role\": \"failed\"},\n    {"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs"
+      }
+    },
+    {
+      "id": "role-baseline",
+      "note": "the run must be the failed run",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"role\": \"failed\",",
+            "with": "\"role\": \"baseline\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/role"
+      }
+    },
+    {
+      "id": "repository-private",
+      "note": "v1 holds public repositories only",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"visibility\": \"public\"",
+            "with": "\"visibility\": \"private\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/repository/visibility"
+      }
+    },
+    {
+      "id": "repository-without-visibility",
+      "note": "visibility is required",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"full_name\": \"example-org/example-repo\",\n        \"visibility\": \"public\"",
+            "with": "\"full_name\": \"example-org/example-repo\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/repository/visibility"
+      }
+    },
+    {
+      "id": "event-pull-request",
+      "note": "push events only",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"event\": \"push\"",
+            "with": "\"event\": \"pull_request\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/event"
+      }
+    },
+    {
+      "id": "job-conclusion-success",
+      "note": "the job must have failed",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"conclusion\": \"failure\"",
+            "with": "\"conclusion\": \"success\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/job/conclusion"
+      }
+    },
+    {
+      "id": "job-completed-before-started",
+      "note": "completed_at earlier than started_at",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"completed_at\": \"2026-11-09T10:03:00Z\"",
+            "with": "\"completed_at\": \"2026-11-09T10:00:04Z\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/job/completed_at"
+      }
+    },
+    {
+      "id": "job-name-c1-control",
+      "note": "display strings reject C1 controls in v1",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"name\": \"test (ubuntu)\"",
+            "with": "\"name\": \"test \\u0085(ubuntu)\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/job/name"
+      }
+    },
+    {
+      "id": "checkout-reason-unknown",
+      "note": "unknown checkout reason",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"checkout\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"workflow_not_collected\"",
+            "with": "\"checkout\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"guessed\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/checkout/reason"
+      }
+    },
+    {
+      "id": "job-log-with-path",
+      "note": "a job log has no path",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"kind\": \"job_log\",",
+            "with": "\"kind\": \"job_log\",\n      \"path\": \"logs/job.txt\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/path"
+      }
+    },
+    {
+      "id": "missing-file-with-revision",
+      "note": "nothing was read, so there is no revision",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"path\": \".github/workflows/ci.yml\",\n      \"missing_reason\": \"not_collected\"",
+            "with": "\"path\": \".github/workflows/ci.yml\",\n      \"revision\": \"1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b\",\n      \"missing_reason\": \"not_collected\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/3/revision"
+      }
+    },
+    {
+      "id": "present-without-received-sha256",
+      "note": "the received hash is required",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"received_sha256\": \"549f244e5bf5faf31b6c080d9e2920a411825786cb9479c38ff91352350eb461\",\n      ",
+            "with": ""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/received_sha256"
+      }
+    },
+    {
+      "id": "authentication-unknown",
+      "note": "unknown authentication",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"authentication\": \"gh_cli\"",
+            "with": "\"authentication\": \"token\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/authentication"
+      }
+    },
+    {
+      "id": "extent-unknown",
+      "note": "unknown extent",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"extent\": \"complete\"",
+            "with": "\"extent\": \"truncated\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/extent"
+      }
+    },
+    {
+      "id": "missing-source-with-extent",
+      "note": "a missing source has no extent",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "{\n      \"id\": \"failed.lockfile\",\n      \"kind\": \"lockfile\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"not_collected\"\n    }",
+            "with": "{\n      \"id\": \"failed.lockfile\",\n      \"kind\": \"lockfile\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"not_collected\",\n      \"extent\": \"complete\"\n    }"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/1/extent"
+      }
+    },
+    {
+      "id": "missing-reason-unknown",
+      "note": "unknown missing reason",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "{\n      \"id\": \"failed.lockfile\",\n      \"kind\": \"lockfile\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"not_collected\"\n    }",
+            "with": "{\n      \"id\": \"failed.lockfile\",\n      \"kind\": \"lockfile\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"lost\"\n    }"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/1/missing_reason"
+      }
+    },
+    {
+      "id": "simulated-missing-with-authentication",
+      "note": "a missing source has no authentication",
+      "input": {
+        "base": "valid-simulated-log-missing.json",
+        "replace": [
+          {
+            "find": "\"missing_reason\": \"access_denied\"",
+            "with": "\"missing_reason\": \"access_denied\",\n      \"authentication\": \"none\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/authentication"
+      }
+    },
+    {
+      "id": "line-text-c1-control",
+      "note": "line text rejects C1 controls in v1",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "Cleaning up orphan processes",
+            "with": "Cleaning up \\u009b orphan processes"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/lines/5/text"
+      }
+    },
+    {
+      "id": "omitted-reason-unknown",
+      "note": "unknown omitted reason",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"reason\": \"redacted\"",
+            "with": "\"reason\": \"secret\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/omitted/1/reason"
+      }
+    },
+    {
+      "id": "duplicate-job-log",
+      "note": "two job_log sources",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "{\n      \"id\": \"failed.lockfile\",",
+            "with": "{\n      \"id\": \"failed.job_log2\",\n      \"kind\": \"job_log\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"not_collected\"\n    },\n    {\n      \"id\": \"failed.lockfile\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/1/kind"
+      }
+    },
+    {
+      "id": "workflow-path-differs",
+      "note": "the workflow file path must equal the run's",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"path\": \".github/workflows/ci.yml\",\n      \"missing_reason\": \"not_collected\"",
+            "with": "\"path\": \".github/workflows/other.yml\",\n      \"missing_reason\": \"not_collected\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/3/path"
+      }
+    },
+    {
+      "id": "source-ids-not-ascending",
+      "note": "ids must be strictly ascending",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"id\": \"failed.manifest\"",
+            "with": "\"id\": \"failed.aaa\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/2/id"
+      }
+    },
+    {
+      "id": "too-many-sources",
+      "note": "21 sources",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"sources\": [",
+            "with": "\"sources\": [@@SOURCES@@"
+          },
+          {
+            "find": "@@SOURCES@@",
+            "with_repeat": {
+              "item": "{\"id\": \"x\", \"kind\": \"job_log\", \"run_role\": \"failed\", \"status\": \"missing\", \"missing_reason\": \"not_collected\"}, ",
+              "count": 17,
+              "separator": ""
+            }
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "too_many_sources",
+        "pointer": "/sources"
+      }
+    },
+    {
+      "id": "too-many-lines",
+      "note": "501 lines",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"lines\": [",
+            "with": "\"lines\": [@@LINES@@"
+          },
+          {
+            "find": "@@LINES@@",
+            "with_repeat": {
+              "item": "{\"n\": 1, \"text\": \"x\"}, ",
+              "count": 495,
+              "separator": ""
+            }
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "too_many_lines",
+        "pointer": "/sources/0/lines"
+      }
+    },
+    {
+      "id": "line-too-long",
+      "note": "2,049 bytes of text",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "2026-11-09T10:00:06.1000000Z Current runner version: '2.330.0'",
+            "with_repeat": {
+              "item": "a",
+              "count": 2049,
+              "separator": ""
+            }
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_too_long",
+        "pointer": "/sources/0/lines/0/text"
+      }
+    },
+    {
+      "id": "unknown-reference",
+      "note": "a span to an undeclared source",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"ubuntu-latest\"\n        ],\n        \"evidence\": []",
+            "with": "\"ubuntu-latest\"\n        ],\n        \"evidence\": [{\"source_id\": \"failed.nope\", \"start\": 1, \"end\": 1}]"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_reference",
+        "pointer": "/runs/0/runner/evidence/0/source_id"
+      }
+    },
+    {
+      "id": "missing-source-entry",
+      "note": "no lockfile source",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "{\n      \"id\": \"failed.lockfile\",\n      \"kind\": \"lockfile\",\n      \"run_role\": \"failed\",\n      \"status\": \"missing\",\n      \"missing_reason\": \"not_collected\"\n    },\n    ",
+            "with": ""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "missing_source_entry",
+        "pointer": "/runs/0"
+      }
+    },
+    {
+      "id": "line-numbers-shifted",
+      "note": "negative control: line 12 renumbered 13",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"n\": 12,",
+            "with": "\"n\": 13,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/0/lines/5/n"
+      }
+    },
+    {
+      "id": "omission-missing",
+      "note": "negative control: the redacted range 8-10 dropped",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": ",\n        {\n          \"start\": 8,\n          \"end\": 10,\n          \"reason\": \"redacted\"\n        }",
+            "with": ""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/0/lines/4/n"
+      }
+    },
+    {
+      "id": "line-count-short",
+      "note": "lines run past line_count",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"line_count\": 12",
+            "with": "\"line_count\": 11"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/0/line_count"
+      }
+    },
+    {
+      "id": "span-to-missing-source",
+      "note": "evidence cannot cite a missing source",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"checkout\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"workflow_not_collected\",\n        \"evidence\": []",
+            "with": "\"checkout\": {\n        \"status\": \"unresolved\",\n        \"reason\": \"workflow_not_collected\",\n        \"evidence\": [{\"source_id\": \"failed.workflow\", \"start\": 1, \"end\": 1}]"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/checkout/evidence/0/source_id"
+      }
+    },
+    {
+      "id": "span-to-omitted-line",
+      "note": "evidence cannot cite an omitted line",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"ubuntu-latest\"\n        ],\n        \"evidence\": []",
+            "with": "\"ubuntu-latest\"\n        ],\n        \"evidence\": [{\"source_id\": \"failed.job_log\", \"start\": 2, \"end\": 2}]"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/runner/evidence/0"
+      }
+    },
+    {
+      "id": "digest-mismatch",
+      "note": "a changed digest",
+      "input": {
+        "base": "valid-collected-job-log.json",
+        "replace": [
+          {
+            "find": "\"evidence_sha256\": \"e2afa127d36619e339a4ab6e67ee2d101b27b21b6128c0b82a93010317a3f25b\"",
+            "with": "\"evidence_sha256\": \"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "digest_mismatch",
+        "pointer": "/evidence_sha256"
+      }
+    }
+  ]
+}

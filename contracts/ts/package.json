@@ -1,0 +1,6 @@
+{
+  "name": "@aftergreen/bundle-contract",
+  "private": true,
+  "description": "Evidence bundle contract v0 and v1 validators. No dependencies; runs on the type stripping of Node 22.18 or later.",
+  "type": "module"
+}

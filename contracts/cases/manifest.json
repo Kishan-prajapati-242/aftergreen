@@ -1,0 +1,1370 @@
+{
+  "schema": "aftergreen.bundle-cases.v0",
+  "contract": "aftergreen.bundle.v0",
+  "cases": [
+    {
+      "id": "valid-simulated-stale-lockfile",
+      "note": "Hand-written simulated stale-lockfile failure with a passing baseline.",
+      "input": {
+        "file": "valid-simulated-stale-lockfile.json"
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a"
+      }
+    },
+    {
+      "id": "valid-missing-baseline-log",
+      "note": "Baseline job log declared missing (expired); evidence that needed it is unresolved or empty.",
+      "input": {
+        "file": "valid-missing-baseline-log.json"
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "73087decf7af892f0db7bbafe8956b8a29a2e504b898be5f0c9ab88d9ab70683"
+      }
+    },
+    {
+      "id": "accept-input-exactly-128kib",
+      "note": "Trailing whitespace pads the raw input to exactly 131072 bytes.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "pad_to_bytes": 131072
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a"
+      }
+    },
+    {
+      "id": "accept-line-exactly-2048-bytes",
+      "note": "1024 x U+00E9 is 2048 UTF-8 bytes; the digest changes with the text.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:11.0000000Z shell: /usr/bin/bash -e {0}",
+            "with_repeat": {
+              "item": "é",
+              "count": 1024,
+              "separator": ""
+            }
+          },
+          {
+            "find": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a",
+            "with": "da95be534dce69da8901074bf1d9669e96d8da4902a210d86713d48050707abe"
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "da95be534dce69da8901074bf1d9669e96d8da4902a210d86713d48050707abe"
+      }
+    },
+    {
+      "id": "accept-escaped-unicode-same-digest",
+      "note": "Writing U+2714 as a JSON escape does not change the digest.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "✔ health check",
+            "with": "\\u2714 health check"
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a"
+      }
+    },
+    {
+      "id": "input-over-128kib",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "pad_to_bytes": 131073
+      },
+      "expect": {
+        "result": "reject",
+        "code": "input_too_large"
+      }
+    },
+    {
+      "id": "precedence-size-before-utf8",
+      "note": "Oversized and malformed: size is checked first.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "sim-0001",
+            "with_hex": "73696d2dff"
+          }
+        ],
+        "pad_to_bytes": 131073
+      },
+      "expect": {
+        "result": "reject",
+        "code": "input_too_large"
+      }
+    },
+    {
+      "id": "invalid-utf8-byte",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "sim-0001",
+            "with_hex": "73696d2dff"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "invalid-utf8-encoded-surrogate",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "sim-0001",
+            "with_hex": "73696d2deda080"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "invalid-utf8-overlong",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "sim-0001",
+            "with_hex": "73696d2dc0af"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "invalid-utf8-truncated-sequence",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "sim-0001",
+            "with_hex": "73696d2de282"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "unpaired-high-surrogate-escape",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:06.0000000Z Ubuntu",
+            "with": "2026-11-02T14:03:06.0000000Z Ubuntu\\ud800"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "unpaired-low-surrogate-escape",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:06.0000000Z Ubuntu",
+            "with": "2026-11-02T14:03:06.0000000Z Ubuntu\\udc00"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "byte-order-mark",
+      "input": {
+        "raw_hex": "efbbbf7b7d"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_json"
+      }
+    },
+    {
+      "id": "trailing-comma",
+      "input": {
+        "raw": "{\"a\": 1,}"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_json"
+      }
+    },
+    {
+      "id": "empty-input",
+      "input": {
+        "raw": ""
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_json"
+      }
+    },
+    {
+      "id": "leading-zero-number",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": 03002,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_json"
+      }
+    },
+    {
+      "id": "nesting-17-levels",
+      "input": {
+        "raw": "[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "nesting_too_deep"
+      }
+    },
+    {
+      "id": "nesting-16-levels-parses",
+      "note": "16 levels parse; the top-level value is then not an object.",
+      "input": {
+        "raw": "[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation"
+      }
+    },
+    {
+      "id": "duplicate-key",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"redaction\": \"none\",",
+            "with": "\"redaction\": \"none\",\n  \"redaction\": \"none\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "duplicate_key"
+      }
+    },
+    {
+      "id": "duplicate-key-escaped",
+      "note": "\\u0072edaction unescapes to redaction.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"redaction\": \"none\",",
+            "with": "\"redaction\": \"none\",\n  \"\\u0072edaction\": \"none\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "duplicate_key"
+      }
+    },
+    {
+      "id": "invalid-number-fraction",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": 3002.0,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "invalid-number-exponent",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": 3.002e3,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "invalid-number-negative",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": -3002,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "invalid-number-too-large",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": 9007199254740992,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "number-max-safe-integer-parses",
+      "note": "2^53-1 parses; only the digest then differs.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": 9007199254740991,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "digest_mismatch",
+        "pointer": "/evidence_sha256"
+      }
+    },
+    {
+      "id": "evaluator-field",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"sim-0001\",",
+            "with": "\"case_id\": \"sim-0001\",\n  \"acceptable_hypotheses\": [\"stale lockfile\"],"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "evaluator_field",
+        "pointer": "/acceptable_hypotheses"
+      }
+    },
+    {
+      "id": "evaluator-field-nested-prefix",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"id\": \"failed.manifest\",",
+            "with": "\"id\": \"failed.manifest\",\n      \"expected_abstention\": \"no\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "evaluator_field",
+        "pointer": "/sources/6/expected_abstention"
+      }
+    },
+    {
+      "id": "precedence-duplicate-before-evaluator",
+      "note": "Parse errors win even when the evaluator field comes first in the document.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"sim-0001\",",
+            "with": "\"case_id\": \"sim-0001\",\n  \"acceptable_hypotheses\": [\"stale lockfile\"],"
+          },
+          {
+            "find": "\"redaction\": \"none\",",
+            "with": "\"redaction\": \"none\",\n  \"redaction\": \"none\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "duplicate_key"
+      }
+    },
+    {
+      "id": "precedence-evaluator-before-unknown-and-digest",
+      "note": "The evaluator scan runs before structure checks and the digest.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"sim-0001\",",
+            "with": "\"case_id\": \"sim-0001\",\n  \"notes\": \"hand-written\","
+          },
+          {
+            "find": "\"id\": \"failed.manifest\",",
+            "with": "\"id\": \"failed.manifest\",\n      \"gold_label\": \"stale lockfile\","
+          },
+          {
+            "find": "@simulated/json-tools@2.0.0 from lock file",
+            "with": "@simulated/json-tools@2.0.1 from lock file"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "evaluator_field",
+        "pointer": "/sources/6/gold_label"
+      }
+    },
+    {
+      "id": "unknown-field",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"sim-0001\",",
+            "with": "\"case_id\": \"sim-0001\",\n  \"notes\": \"hand-written\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/notes"
+      }
+    },
+    {
+      "id": "unknown-field-pointer-escaping",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"case_id\": \"sim-0001\",",
+            "with": "\"case_id\": \"sim-0001\",\n  \"a/b~c\": 1,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/a~1b~0c"
+      }
+    },
+    {
+      "id": "unknown-field-in-span",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33, \"lines\": 2}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_field",
+        "pointer": "/runs/0/checkout/evidence/1/lines"
+      }
+    },
+    {
+      "id": "top-level-array",
+      "input": {
+        "raw": "[]"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation"
+      }
+    },
+    {
+      "id": "null-value",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"redaction\": \"none\",",
+            "with": "\"redaction\": null,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction"
+      }
+    },
+    {
+      "id": "boolean-value",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_id\": 3002,",
+            "with": "\"run_id\": true,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/run_id"
+      }
+    },
+    {
+      "id": "missing-required-member",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "  \"redaction\": \"none\",\n",
+            "with": ""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction"
+      }
+    },
+    {
+      "id": "evidence-class-collected",
+      "note": "v0 bundles cannot claim to be collected from GitHub.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"evidence_class\": \"simulated\",",
+            "with": "\"evidence_class\": \"collected\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/evidence_class"
+      }
+    },
+    {
+      "id": "redaction-claimed",
+      "note": "No redaction exists yet, so v0 bundles cannot claim it.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"redaction\": \"none\",",
+            "with": "\"redaction\": \"applied\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/redaction"
+      }
+    },
+    {
+      "id": "timestamp-invalid-date",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"attempt_started_at\": \"2026-11-02T14:03:00Z\",",
+            "with": "\"attempt_started_at\": \"2026-02-30T14:03:00Z\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/attempt_started_at"
+      }
+    },
+    {
+      "id": "conclusion-role-mismatch",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"conclusion\": \"failure\",",
+            "with": "\"conclusion\": \"success\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/job/conclusion"
+      }
+    },
+    {
+      "id": "job-completed-before-start",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"completed_at\": \"2026-11-02T14:03:23Z\"",
+            "with": "\"completed_at\": \"2026-11-02T14:03:04Z\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/job/completed_at"
+      }
+    },
+    {
+      "id": "checkout-resolved-with-reason",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"sha\": \"fa11ed0000000000000000000000000000000002\",",
+            "with": "\"sha\": \"fa11ed0000000000000000000000000000000002\",\n        \"reason\": \"dynamic_ref\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/0/checkout/reason"
+      }
+    },
+    {
+      "id": "path-traversal",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_role\": \"failed\",\n      \"status\": \"present\",\n      \"path\": \"package.json\",",
+            "with": "\"run_role\": \"failed\",\n      \"status\": \"present\",\n      \"path\": \"../package.json\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/6/path"
+      }
+    },
+    {
+      "id": "job-log-with-path",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"id\": \"failed.job-log\",",
+            "with": "\"id\": \"failed.job-log\",\n      \"path\": \"logs/job.txt\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/4/path"
+      }
+    },
+    {
+      "id": "missing-source-with-line-count",
+      "input": {
+        "base": "valid-missing-baseline-log.json",
+        "replace": [
+          {
+            "find": "\"status\": \"missing\",\n      \"missing_reason\": \"expired\"",
+            "with": "\"status\": \"missing\",\n      \"missing_reason\": \"expired\",\n      \"line_count\": 0"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/line_count"
+      }
+    },
+    {
+      "id": "control-character-in-line",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:06.0000000Z Current runner version: '2.329.0'",
+            "with": "2026-11-02T14:03:06.0000000Z \\u001b[0mCurrent runner version: '2.329.0'"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/4/lines/0/text"
+      }
+    },
+    {
+      "id": "sources-not-sorted",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"id\": \"failed.workflow\",",
+            "with": "\"id\": \"a-failed.workflow\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/7/id"
+      }
+    },
+    {
+      "id": "run-roles-out-of-order",
+      "note": "Both runs are individually consistent failed runs; only the role order is wrong.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"role\": \"baseline\",",
+            "with": "\"role\": \"failed\","
+          },
+          {
+            "find": "\"conclusion\": \"success\",",
+            "with": "\"conclusion\": \"failure\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/1/role"
+      }
+    },
+    {
+      "id": "digest-uppercase-hex",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a",
+            "with": "137735478EA44614D86C00FA40C16BFEB709BB744566BE69FAE9006E49CC566A"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/evidence_sha256"
+      }
+    },
+    {
+      "id": "too-many-sources",
+      "note": "13 empty objects plus 8 sources; the count is checked before the entries.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"sources\": [",
+            "with": "\"sources\": [{},{},{},{},{},{},{},{},{},{},{},{},{},"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "too_many_sources",
+        "pointer": "/sources"
+      }
+    },
+    {
+      "id": "too-many-lines",
+      "note": "501 empty objects replace the first line. Checking entries first would report schema_violation at /sources/4/lines/0/n.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"n\": 1, \"text\": \"2026-11-02T14:03:06.0000000Z Current runner version: '2.329.0'\"},",
+            "with_repeat": {
+              "item": "{},",
+              "count": 501,
+              "separator": ""
+            }
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "too_many_lines",
+        "pointer": "/sources/4/lines"
+      }
+    },
+    {
+      "id": "line-over-2048-bytes",
+      "note": "1025 x U+00E9 is 1025 characters but 2050 UTF-8 bytes.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:11.0000000Z shell: /usr/bin/bash -e {0}",
+            "with_repeat": {
+              "item": "é",
+              "count": 1025,
+              "separator": ""
+            }
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_too_long",
+        "pointer": "/sources/4/lines/23/text"
+      }
+    },
+    {
+      "id": "repository-mismatch",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"repository\": {\"id\": 1001, \"full_name\": \"simulated/demo-app\"},\n      \"workflow\": {\"id\": 2001, \"path\": \".github/workflows/ci.yml\"},\n      \"run_id\": 3001,",
+            "with": "\"repository\": {\"id\": 1001, \"full_name\": \"simulated/other-demo\"},\n      \"workflow\": {\"id\": 2001, \"path\": \".github/workflows/ci.yml\"},\n      \"run_id\": 3001,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/1/repository"
+      }
+    },
+    {
+      "id": "missing-source-entry",
+      "note": "The failed run's manifest is silently absent instead of declared missing.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "    {\n      \"id\": \"failed.manifest\",\n      \"kind\": \"manifest\",\n      \"run_role\": \"failed\",\n      \"status\": \"present\",\n      \"path\": \"package.json\",\n      \"revision\": \"fa11ed0000000000000000000000000000000002\",\n      \"extent\": \"complete\",\n      \"line_count\": 12,\n      \"lines\": [\n        {\"n\": 1, \"text\": \"{\"},\n        {\"n\": 2, \"text\": \"  \\\"name\\\": \\\"demo-app\\\",\"},\n        {\"n\": 3, \"text\": \"  \\\"version\\\": \\\"1.0.0\\\",\"},\n        {\"n\": 4, \"text\": \"  \\\"private\\\": true,\"},\n        {\"n\": 5, \"text\": \"  \\\"scripts\\\": {\"},\n        {\"n\": 6, \"text\": \"    \\\"test\\\": \\\"node --test\\\"\"},\n        {\"n\": 7, \"text\": \"  },\"},\n        {\"n\": 8, \"text\": \"  \\\"dependencies\\\": {\"},\n        {\"n\": 9, \"text\": \"    \\\"@simulated/http-kit\\\": \\\"^1.4.0\\\",\"},\n        {\"n\": 10, \"text\": \"    \\\"@simulated/json-tools\\\": \\\"^2.0.0\\\"\"},\n        {\"n\": 11, \"text\": \"  }\"},\n        {\"n\": 12, \"text\": \"}\"}\n      ],\n      \"omitted\": []\n    },\n",
+            "with": ""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "missing_source_entry",
+        "pointer": "/runs/0"
+      }
+    },
+    {
+      "id": "duplicate-required-source",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"id\": \"baseline.job-log\",\n      \"kind\": \"job_log\",\n      \"run_role\": \"baseline\",",
+            "with": "\"id\": \"baseline.job-log\",\n      \"kind\": \"job_log\",\n      \"run_role\": \"failed\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/4/kind"
+      }
+    },
+    {
+      "id": "workflow-path-mismatch",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/ci.yml\"},\n      \"run_id\": 3002,",
+            "with": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/test.yml\"},\n      \"run_id\": 3002,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/7/path"
+      }
+    },
+    {
+      "id": "lines-not-ascending",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"n\": 11, \"text\": \"  }\"},\n        {\"n\": 12, \"text\": \"}\"}",
+            "with": "{\"n\": 12, \"text\": \"  }\"},\n        {\"n\": 11, \"text\": \"}\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/6/lines/11/n"
+      }
+    },
+    {
+      "id": "omitted-start-after-end",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 61, \"end\": 64, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 64, \"end\": 61, \"reason\": \"outside_selected_span\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/4/omitted/4/end"
+      }
+    },
+    {
+      "id": "adjacent-omitted-same-reason",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 61, \"end\": 64, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 61, \"end\": 62, \"reason\": \"outside_selected_span\"},\n        {\"start\": 63, \"end\": 64, \"reason\": \"outside_selected_span\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/4/omitted/5/reason"
+      }
+    },
+    {
+      "id": "line-map-gap",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 52, \"end\": 58, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 53, \"end\": 58, \"reason\": \"outside_selected_span\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/4/omitted/3/start"
+      }
+    },
+    {
+      "id": "line-map-overlap",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 52, \"end\": 58, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 51, \"end\": 58, \"reason\": \"outside_selected_span\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/4/omitted/3/start"
+      }
+    },
+    {
+      "id": "line-map-short-of-line-count",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 61, \"end\": 64, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 61, \"end\": 63, \"reason\": \"outside_selected_span\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "line_map_invalid",
+        "pointer": "/sources/4/line_count"
+      }
+    },
+    {
+      "id": "span-unknown-source",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"failed.job-logs\", \"start\": 32, \"end\": 33}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "unknown_reference",
+        "pointer": "/runs/0/checkout/evidence/1/source_id"
+      }
+    },
+    {
+      "id": "span-into-omitted-line",
+      "note": "Line 31 exists in the original log but is not included.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"failed.job-log\", \"start\": 31, \"end\": 33}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/checkout/evidence/1"
+      }
+    },
+    {
+      "id": "span-cross-run",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"baseline.job-log\", \"start\": 32, \"end\": 33}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/checkout/evidence/1/source_id"
+      }
+    },
+    {
+      "id": "span-end-beyond-line-count",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 65}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/checkout/evidence/1/end"
+      }
+    },
+    {
+      "id": "span-start-zero",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"source_id\": \"failed.job-log\", \"start\": 32, \"end\": 33}",
+            "with": "{\"source_id\": \"failed.job-log\", \"start\": 0, \"end\": 33}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/0/checkout/evidence/1/start"
+      }
+    },
+    {
+      "id": "span-to-missing-source",
+      "input": {
+        "base": "valid-missing-baseline-log.json",
+        "replace": [
+          {
+            "find": "\"reason\": \"log_missing\",\n        \"evidence\": []",
+            "with": "\"reason\": \"log_missing\",\n        \"evidence\": [{\"source_id\": \"baseline.job-log\", \"start\": 1, \"end\": 1}]"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "span_invalid",
+        "pointer": "/runs/1/checkout/evidence/0/source_id"
+      }
+    },
+    {
+      "id": "accept-line-2048-bytes-as-escapes",
+      "note": "1024 \\u00e9 escapes are 6144 raw JSON bytes but 2048 decoded UTF-8 bytes; same digest as the raw form.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:11.0000000Z shell: /usr/bin/bash -e {0}",
+            "with_repeat": {
+              "item": "\\u00e9",
+              "count": 1024,
+              "separator": ""
+            }
+          },
+          {
+            "find": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a",
+            "with": "da95be534dce69da8901074bf1d9669e96d8da4902a210d86713d48050707abe"
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "da95be534dce69da8901074bf1d9669e96d8da4902a210d86713d48050707abe"
+      }
+    },
+    {
+      "id": "accept-invisible-and-separator-characters",
+      "note": "C1 NEL, U+2028, zero-width space and tag characters are accepted (spec section 9); this pins Go/TS agreement on them.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "2026-11-02T14:03:11.0000000Z ##[endgroup]",
+            "with": "2026-11-02T14:03:11.0000000Z ##[endgroup] ​󠁩󠁧"
+          },
+          {
+            "find": "137735478ea44614d86c00fa40c16bfeb709bb744566be69fae9006e49cc566a",
+            "with": "d40a494d3d97ecde4ab3573eb1c527edebdd721d52f77f60843436e2e9ef366c"
+          }
+        ]
+      },
+      "expect": {
+        "result": "accept",
+        "evidence_sha256": "d40a494d3d97ecde4ab3573eb1c527edebdd721d52f77f60843436e2e9ef366c"
+      }
+    },
+    {
+      "id": "utf8-checked-before-syntax",
+      "note": "The syntax error comes first in the bytes, but UTF-8 is checked over the whole input before parsing.",
+      "input": {
+        "raw_hex": "7b2cff"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_utf8"
+      }
+    },
+    {
+      "id": "negative-zero-then-digit",
+      "note": "The number token is -0, judged before the following 1 is read.",
+      "input": {
+        "raw": "{\"a\":-01}"
+      },
+      "expect": {
+        "result": "reject",
+        "code": "invalid_number"
+      }
+    },
+    {
+      "id": "source-order-missing-reason-before-form",
+      "note": "missing_reason is checked before members the missing form forbids.",
+      "input": {
+        "base": "valid-missing-baseline-log.json",
+        "replace": [
+          {
+            "find": "\"missing_reason\": \"expired\"",
+            "with": "\"missing_reason\": \"gone\",\n      \"extent\": \"complete\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/missing_reason"
+      }
+    },
+    {
+      "id": "source-order-path-before-form",
+      "note": "path is checked before members the present form forbids.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"run_role\": \"failed\",\n      \"status\": \"present\",\n      \"path\": \"package.json\",",
+            "with": "\"run_role\": \"failed\",\n      \"status\": \"present\",\n      \"missing_reason\": \"expired\",\n      \"path\": \"../package.json\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/6/path"
+      }
+    },
+    {
+      "id": "source-order-id-before-status",
+      "note": "id is checked before status.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"id\": \"baseline.job-log\",\n      \"kind\": \"job_log\",\n      \"run_role\": \"baseline\",\n      \"status\": \"present\",",
+            "with": "\"id\": \"X\",\n      \"kind\": \"job_log\",\n      \"run_role\": \"baseline\",\n      \"status\": \"gone\","
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/0/id"
+      }
+    },
+    {
+      "id": "workflow-path-mismatch-both-runs",
+      "note": "Runs are taken in array order, so the failed run's workflow source is reported.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/ci.yml\"},\n      \"run_id\": 3002,",
+            "with": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/test.yml\"},\n      \"run_id\": 3002,"
+          },
+          {
+            "find": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/ci.yml\"},\n      \"run_id\": 3001,",
+            "with": "\"workflow\": {\"id\": 2001, \"path\": \".github/workflows/test.yml\"},\n      \"run_id\": 3001,"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/7/path"
+      }
+    },
+    {
+      "id": "omitted-reason-redacted",
+      "note": "No redaction exists in v0, so an omitted range cannot claim it.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "{\"start\": 52, \"end\": 58, \"reason\": \"outside_selected_span\"}",
+            "with": "{\"start\": 52, \"end\": 58, \"reason\": \"redacted\"}"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/sources/4/omitted/3/reason"
+      }
+    },
+    {
+      "id": "baseline-not-before-failure",
+      "note": "The baseline job completes exactly when the failed attempt starts; it must be strictly earlier.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "\"completed_at\": \"2026-11-01T10:00:20Z\"",
+            "with": "\"completed_at\": \"2026-11-02T14:03:00Z\""
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "schema_violation",
+        "pointer": "/runs/1/job/completed_at"
+      }
+    },
+    {
+      "id": "wrong-digest",
+      "note": "One character of an included line changed without updating the digest.",
+      "input": {
+        "base": "valid-simulated-stale-lockfile.json",
+        "replace": [
+          {
+            "find": "@simulated/json-tools@2.0.0 from lock file",
+            "with": "@simulated/json-tools@2.0.1 from lock file"
+          }
+        ]
+      },
+      "expect": {
+        "result": "reject",
+        "code": "digest_mismatch",
+        "pointer": "/evidence_sha256"
+      }
+    }
+  ],
+  "canonical_vectors": [
+    {
+      "id": "nested-object-array-utf8",
+      "json": "{\"b\":[1,\"é\"],\"a\":\"x\"}",
+      "canonical_hex": "6473313a6173313a7873313a626c69316573323ac3a96565",
+      "sha256": "32775ccaee2147d1f2e40a8ef2bb4d88ced1bd50e72239b2552317045a0805a2"
+    },
+    {
+      "id": "member-order-and-escapes-do-not-matter",
+      "json": "{\"a\":\"x\",\"b\":[1,\"\\u00e9\"]}",
+      "canonical_hex": "6473313a6173313a7873313a626c69316573323ac3a96565",
+      "sha256": "32775ccaee2147d1f2e40a8ef2bb4d88ced1bd50e72239b2552317045a0805a2"
+    },
+    {
+      "id": "empty-containers-and-max-integer",
+      "json": "{\"z\":{},\"y\":[],\"n\":9007199254740991}",
+      "canonical_hex": "6473313a6e69393030373139393235343734303939316573313a796c6573313a7a646565",
+      "sha256": "c05dfbdf3821d85bf96799e76b755e224bd5e41105378836e797d2c4aa7978f5"
+    },
+    {
+      "id": "surrogate-pair-escape",
+      "json": "{\"a\":\"\\ud83d\\ude00\"}",
+      "canonical_hex": "6473313a6173343af09f988065",
+      "sha256": "f1580033b61d5fd330bfd3c78aeca4f92bb9485d63de251ec66635bdfac53bde"
+    }
+  ]
+}

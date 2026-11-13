@@ -1,0 +1,130 @@
+{
+  "schema": "aftergreen.eval-sidecar.v0",
+  "evaluator_only": "Evaluator data. Never give this file to the product, a model or retrieval.",
+  "bundle": "dev-10.json",
+  "label": "no-baseline",
+  "evidence_class": "simulated",
+  "scenario": "Simulated case; not a real GitHub run. A test fails and no baseline run was supplied.",
+  "expected": {
+    "decision": "not_supplied",
+    "rows": [],
+    "observations": [
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "js_error,test_failure"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 51,
+            "end": 52
+          }
+        ]
+      },
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "actions_error"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 57,
+            "end": 57
+          }
+        ]
+      },
+      {
+        "kind": "exit_code",
+        "run_role": "failed",
+        "fields": {
+          "exit_code": "1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 57,
+            "end": 57
+          }
+        ]
+      },
+      {
+        "kind": "error_step",
+        "run_role": "failed",
+        "fields": {
+          "step": "npm test"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 45,
+            "end": 45
+          },
+          {
+            "source_id": "failed.job-log",
+            "start": 57,
+            "end": 57
+          }
+        ]
+      },
+      {
+        "kind": "runner_image",
+        "run_role": "failed",
+        "fields": {
+          "image": "ubuntu-24.04",
+          "version": "20261026.1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 8,
+            "end": 9
+          }
+        ]
+      },
+      {
+        "kind": "node_version",
+        "run_role": "failed",
+        "fields": {
+          "version": "20.19.5",
+          "arch": "x64"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 38,
+            "end": 38
+          }
+        ]
+      },
+      {
+        "kind": "checkout_sha_shown",
+        "run_role": "failed",
+        "fields": {
+          "sha": "fa11ed1000000000000000000000000000000000",
+          "matches_head": "yes"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 33,
+            "end": 33
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      {
+        "code": "no_baseline"
+      },
+      {
+        "code": "source_partial_lines",
+        "run_role": "failed",
+        "source_id": "failed.job-log"
+      }
+    ]
+  }
+}

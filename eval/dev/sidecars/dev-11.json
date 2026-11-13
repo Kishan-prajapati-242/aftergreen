@@ -1,0 +1,276 @@
+{
+  "schema": "aftergreen.eval-sidecar.v0",
+  "evaluator_only": "Evaluator data. Never give this file to the product, a model or retrieval.",
+  "bundle": "dev-11.json",
+  "label": "questionable-checkout",
+  "evidence_class": "simulated",
+  "scenario": "Simulated case; not a real GitHub run. The workflow checks out a different ref than the pushed commit; the collected manifest and lockfile are from the pushed commit, not from what the job ran.",
+  "expected": {
+    "decision": "partial",
+    "rows": [
+      {
+        "field": "run_identity",
+        "outcome": "distinct_runs",
+        "effect": "none"
+      },
+      {
+        "field": "workflow",
+        "outcome": "same_workflow",
+        "effect": "none"
+      },
+      {
+        "field": "branch",
+        "outcome": "same_branch",
+        "effect": "none"
+      },
+      {
+        "field": "job",
+        "outcome": "same_logical_job",
+        "effect": "none"
+      },
+      {
+        "field": "matrix_dimensions",
+        "outcome": "same_dimensions",
+        "effect": "none"
+      },
+      {
+        "field": "matrix_values",
+        "outcome": "same_values",
+        "effect": "none"
+      },
+      {
+        "field": "runner_os",
+        "outcome": "same_os",
+        "effect": "none"
+      },
+      {
+        "field": "runner_arch",
+        "outcome": "same_arch",
+        "effect": "none"
+      },
+      {
+        "field": "runner_labels",
+        "outcome": "same_labels",
+        "effect": "none"
+      },
+      {
+        "field": "failed_checkout",
+        "outcome": "checkout_differs_from_head",
+        "effect": "partial"
+      },
+      {
+        "field": "baseline_checkout",
+        "outcome": "checkout_matches_head",
+        "effect": "none"
+      },
+      {
+        "field": "file_revisions",
+        "outcome": "revision_mismatch",
+        "effect": "partial"
+      },
+      {
+        "field": "file_coverage",
+        "outcome": "files_complete",
+        "effect": "none"
+      },
+      {
+        "field": "log_coverage",
+        "outcome": "logs_fully_read",
+        "effect": "none"
+      }
+    ],
+    "observations": [
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "js_error,test_failure"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 51,
+            "end": 52
+          }
+        ]
+      },
+      {
+        "kind": "log_error_lines",
+        "run_role": "failed",
+        "fields": {
+          "markers": "actions_error"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "exit_code",
+        "run_role": "failed",
+        "fields": {
+          "exit_code": "1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "error_step",
+        "run_role": "failed",
+        "fields": {
+          "step": "npm test"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 45,
+            "end": 45
+          },
+          {
+            "source_id": "failed.job-log",
+            "start": 56,
+            "end": 56
+          }
+        ]
+      },
+      {
+        "kind": "runner_image",
+        "run_role": "failed",
+        "fields": {
+          "image": "ubuntu-24.04",
+          "version": "20261026.1"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 8,
+            "end": 9
+          }
+        ]
+      },
+      {
+        "kind": "node_version",
+        "run_role": "failed",
+        "fields": {
+          "version": "20.19.5",
+          "arch": "x64"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 38,
+            "end": 38
+          }
+        ]
+      },
+      {
+        "kind": "checkout_sha_shown",
+        "run_role": "failed",
+        "fields": {
+          "sha": "c0ffee1100000000000000000000000000000000",
+          "matches_head": "no"
+        },
+        "citations": [
+          {
+            "source_id": "failed.job-log",
+            "start": 33,
+            "end": 33
+          }
+        ]
+      },
+      {
+        "kind": "runner_image",
+        "run_role": "baseline",
+        "fields": {
+          "image": "ubuntu-24.04",
+          "version": "20261026.1"
+        },
+        "citations": [
+          {
+            "source_id": "baseline.job-log",
+            "start": 8,
+            "end": 9
+          }
+        ]
+      },
+      {
+        "kind": "node_version",
+        "run_role": "baseline",
+        "fields": {
+          "version": "20.19.5",
+          "arch": "x64"
+        },
+        "citations": [
+          {
+            "source_id": "baseline.job-log",
+            "start": 38,
+            "end": 38
+          }
+        ]
+      },
+      {
+        "kind": "checkout_sha_shown",
+        "run_role": "baseline",
+        "fields": {
+          "sha": "ba5e110000000000000000000000000000000000",
+          "matches_head": "yes"
+        },
+        "citations": [
+          {
+            "source_id": "baseline.job-log",
+            "start": 33,
+            "end": 33
+          }
+        ]
+      },
+      {
+        "kind": "source_changed",
+        "run_role": "both",
+        "fields": {
+          "kind": "workflow_file",
+          "common_prefix_lines": "12",
+          "common_suffix_lines": "5"
+        },
+        "citations": [
+          {
+            "source_id": "failed.workflow",
+            "start": 13,
+            "end": 14
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      {
+        "code": "source_partial_lines",
+        "run_role": "baseline",
+        "source_id": "baseline.job-log"
+      },
+      {
+        "code": "source_partial_lines",
+        "run_role": "failed",
+        "source_id": "failed.job-log"
+      },
+      {
+        "code": "revision_mismatch",
+        "run_role": "failed",
+        "source_id": "failed.lockfile",
+        "reason": "checkout_sha"
+      },
+      {
+        "code": "revision_mismatch",
+        "run_role": "failed",
+        "source_id": "failed.manifest",
+        "reason": "checkout_sha"
+      }
+    ]
+  }
+}
