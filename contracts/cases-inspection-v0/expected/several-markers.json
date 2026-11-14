@@ -1,0 +1,285 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "10d7279abfacf32bc42e159a9cd9b6e696cd80ee492dcbeb3ec62c74433da4b7",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 22,
+  "included_lines": 22,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 0,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "npm_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 3,
+    "end": 3
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "npm_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 4,
+    "end": 4
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 6,
+    "end": 6
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 7,
+    "end": 7
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 8,
+    "end": 8
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "pytest_failed",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 10,
+    "end": 10
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "python_traceback",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 11,
+    "end": 11
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 13,
+    "end": 13
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_panic",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 14,
+    "end": 14
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 15,
+    "end": 15
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "timeout",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 15,
+    "end": 15
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "timeout",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 16,
+    "end": 16
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "failed_count",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 18,
+    "end": 18
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "gha_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 22,
+    "end": 22
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "nonzero_exit",
+   "exit_code": 2,
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 22,
+    "end": 22
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 1,
+   "npm_error": 2,
+   "go_test_fail": 3,
+   "pytest_failed": 1,
+   "python_traceback": 1,
+   "go_panic": 1,
+   "error_line": 2,
+   "timeout": 2,
+   "failed_count": 1
+  },
+  "nonzero_exit": 1,
+  "step_header": 1,
+  "observations": 16
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

@@ -6,12 +6,15 @@ import (
 	"regexp"
 	"sort"
 	"strconv"
+
+	"aftergreen/collector/markers"
+	"aftergreen/contracts/bundle"
 )
 
 // Line selection. A line is a candidate when it is:
 //   - a failure line (##[error], or "Process completed with exit code" and
 //     a non-zero code);
-//   - another error signal (npm ERR!, Error:, ERROR, FAIL, failed, Failed,
+//   - another error signal (npm ERR!, npm error, Error:, ERROR, FAIL, failed, Failed,
 //     AssertionError, a Python traceback, panic:, timed out, TimeoutError);
 //   - within contextLines of either; or
 //   - among the first headLines or last tailLines of the log.
@@ -29,7 +32,7 @@ import (
 //     is scanned for signals;
 //   - line_limit: a candidate that is not included because of the line, byte
 //     or omitted-range budget;
-//   - outside_selected_span: every other line.
+//   - outside_selected_span: every other line that no step span includes.
 //
 // The bundle may hold at most 501 omitted ranges. When the exact reasons
 // need more, fitRanges drops included lines, which become line_limit, but
@@ -37,11 +40,12 @@ import (
 // ranges into one. Build tries line budgets from 110,000 bytes down in steps
 // of 1,024 while positive, then 0 (lineBudgets), and keeps the first
 // selection that fits both the range and the size limit; if none does, it
-// returns ErrRangeLimit.
+// returns ErrRangeLimit. Step spans are then added to that selection when
+// they fit (addStepSpans).
 
 var (
 	failureRE = regexp.MustCompile(`##\[error\]|Process completed with exit code [1-9]`)
-	signalRE  = regexp.MustCompile(`npm ERR!|Error:|\bERROR\b|\bFAIL(?:ED)?\b|\b[Ff]ailed\b|AssertionError|Traceback \(most recent call last\)|panic:|[Tt]imed out|\bTimeoutError\b`)
+	signalRE  = regexp.MustCompile(`npm ERR!|\bnpm error\b|Error:|\bERROR\b|\bFAIL(?:ED)?\b|\b[Ff]ailed\b|AssertionError|Traceback \(most recent call last\)|panic:|[Tt]imed out|\bTimeoutError\b`)
 )
 
 const (
@@ -56,6 +60,7 @@ const (
 
 type lineDoc struct {
 	text     string
+	clean    string         // the text after cleaning, before redaction (for the audit)
 	counts   map[string]int // inline redactions in this line, by rule
 	withheld bool           // withheld by redaction: a key block, or hidden by escape removal
 	tooLong  bool
@@ -80,14 +85,19 @@ var reasonOf = map[decision]string{
 
 // ranking is what admission needs, computed once per log: each line's rank
 // (0 is most important; -1 is not a candidate), the reasons that do not
-// depend on the budget, and the admissible candidates in admission order
-// with their encoded sizes.
+// depend on the budget, the admissible candidates in admission order with
+// their encoded sizes, and the failure lines' step spans.
 type ranking struct {
 	rank  []int
 	base  []decision // 0 for an admissible candidate
 	cands []int
-	cost  []int // per candidate, in cands order
+	cost  []int      // per candidate, in cands order
+	spans []stepSpan // in line order
 }
+
+// stepSpan is lines start..end, 0-based: a failure line (end) and the lines
+// back to the nearest step header (start), none withheld or too long.
+type stepSpan struct{ start, end int }
 
 func rankLines(lines []lineDoc) ranking {
 	n := len(lines)
@@ -148,7 +158,94 @@ func rankLines(lines []lineDoc) ranking {
 	for k, i := range rk.cands {
 		rk.cost[k] = lineCost(int64(i+1), lines[i].text)
 	}
+	from := -1 // the latest step header with no withheld or too long line after it
+	for i, l := range lines {
+		if l.withheld || l.tooLong {
+			from = -1
+			continue
+		}
+		if markers.StepHeader(markers.Body(l.text)) {
+			from = i
+		}
+		if rank[i] == 0 && from >= 0 && i-from < maxLines {
+			rk.spans = append(rk.spans, stepSpan{from, i})
+		}
+	}
 	return rk
+}
+
+// Step spans. The inspector cites a step header for an observation only
+// when the header and every line through the observation are included
+// (contracts/inspection-v0.md section 4). Once a selection fits, each
+// included failure line, latest first, gets its step span: the lines from
+// the nearest step header at or before it through the failure line. A step
+// header is a line whose bundle text, after one leading timestamp, starts
+// with "##[group]Run ", as the inspector reads it. A span is added whole or
+// not at all. It is not added when:
+//   - no step header comes before the failure line;
+//   - one of its lines is withheld or too long, since such a line is never
+//     included;
+//   - the lines it would add do not all fit in the 500 lines, the line
+//     budget the selection was made with, and the bundle's size limit;
+//   - the selection left out lines to fit the omitted-range limit
+//     (addStepSpans is then not called): a span must not take their room.
+//
+// A span is not a candidate, so its lines keep their reasons when it is not
+// added, and the step stays undetermined. An outside_selected_span line may
+// therefore be one that more room would have included. Every line a span
+// adds was outside_selected_span: a candidate the budget left out did not fit
+// in the room left at its turn, which has only shrunk since, so no span
+// holding it fits either. Adding a span never adds an omitted range, since
+// its failure line is included: ranges inside it go, and one that runs into
+// it ends sooner.
+
+// addStepSpans adds step spans to dec, a selection made with textBudget
+// whose bundle is size bytes long, and returns the number of lines added.
+// The size check is an upper bound: an added line adds its lineCost and the
+// redaction count may gain digits, while the bytes saved by omitted ranges
+// that go or shrink are not counted. A span within that many bytes of the
+// limit is refused although it would fit.
+func (rk ranking) addStepSpans(lines []lineDoc, dec []decision, textBudget, size int) int {
+	used, count, red := 0, 0, 0
+	for i, d := range dec {
+		if d == included {
+			used += lineCost(int64(i+1), lines[i].text)
+			count++
+			red += redactionsIn(lines[i])
+		}
+	}
+	added := 0
+	for k := len(rk.spans) - 1; k >= 0 && count < maxLines; k-- {
+		s := rk.spans[k]
+		if dec[s.end] != included {
+			continue
+		}
+		more, cost, spanRed := 0, 0, 0
+		for i := s.start; i < s.end; i++ {
+			if dec[i] != included {
+				more++
+				cost += lineCost(int64(i+1), lines[i].text)
+				spanRed += redactionsIn(lines[i])
+			}
+		}
+		grow := cost + len(strconv.Itoa(red+spanRed)) - len(strconv.Itoa(red))
+		if more == 0 || count+more > maxLines || used+cost > textBudget || size+grow > bundle.MaxInputBytes {
+			continue
+		}
+		for i := s.start; i < s.end; i++ {
+			dec[i] = included
+		}
+		used, count, red, size, added = used+cost, count+more, red+spanRed, size+grow, added+more
+	}
+	return added
+}
+
+func redactionsIn(l lineDoc) int {
+	n := 0
+	for _, c := range l.counts {
+		n += c
+	}
+	return n
 }
 
 // admit decides, for every line, whether it is included and otherwise why

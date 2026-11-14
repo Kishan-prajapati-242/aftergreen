@@ -1,0 +1,3085 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "04940d800847b2d48db774a8237c40ba36c25a30e409146a36012f4cc32071c8",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 603,
+  "included_lines": 500,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 103,
+   "redacted": 0
+  },
+  "omitted_ranges": 1,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 104,
+    "end": 104
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 105,
+    "end": 105
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 106,
+    "end": 106
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 107,
+    "end": 107
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 108,
+    "end": 108
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 109,
+    "end": 109
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 110,
+    "end": 110
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 111,
+    "end": 111
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 112,
+    "end": 112
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 113,
+    "end": 113
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 114,
+    "end": 114
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 115,
+    "end": 115
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 116,
+    "end": 116
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 117,
+    "end": 117
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 118,
+    "end": 118
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 119,
+    "end": 119
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 120,
+    "end": 120
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 121,
+    "end": 121
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 122,
+    "end": 122
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 123,
+    "end": 123
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 124,
+    "end": 124
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 125,
+    "end": 125
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 126,
+    "end": 126
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 127,
+    "end": 127
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 128,
+    "end": 128
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 129,
+    "end": 129
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 130,
+    "end": 130
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 131,
+    "end": 131
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 132,
+    "end": 132
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 133,
+    "end": 133
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 134,
+    "end": 134
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 135,
+    "end": 135
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 136,
+    "end": 136
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 137,
+    "end": 137
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 138,
+    "end": 138
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 139,
+    "end": 139
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 140,
+    "end": 140
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 141,
+    "end": 141
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 142,
+    "end": 142
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 143,
+    "end": 143
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 144,
+    "end": 144
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 145,
+    "end": 145
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 146,
+    "end": 146
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 147,
+    "end": 147
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 148,
+    "end": 148
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 149,
+    "end": 149
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 150,
+    "end": 150
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 151,
+    "end": 151
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 152,
+    "end": 152
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 153,
+    "end": 153
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 154,
+    "end": 154
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 155,
+    "end": 155
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 156,
+    "end": 156
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 157,
+    "end": 157
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 158,
+    "end": 158
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 159,
+    "end": 159
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 160,
+    "end": 160
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 161,
+    "end": 161
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 162,
+    "end": 162
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 163,
+    "end": 163
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 164,
+    "end": 164
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 165,
+    "end": 165
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 166,
+    "end": 166
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 167,
+    "end": 167
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 168,
+    "end": 168
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 169,
+    "end": 169
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 170,
+    "end": 170
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 171,
+    "end": 171
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 172,
+    "end": 172
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 173,
+    "end": 173
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 174,
+    "end": 174
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 175,
+    "end": 175
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 176,
+    "end": 176
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 177,
+    "end": 177
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 178,
+    "end": 178
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 179,
+    "end": 179
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 180,
+    "end": 180
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 181,
+    "end": 181
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 182,
+    "end": 182
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 183,
+    "end": 183
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 184,
+    "end": 184
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 185,
+    "end": 185
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 186,
+    "end": 186
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 187,
+    "end": 187
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 188,
+    "end": 188
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 189,
+    "end": 189
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 190,
+    "end": 190
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 191,
+    "end": 191
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 192,
+    "end": 192
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 193,
+    "end": 193
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 194,
+    "end": 194
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 195,
+    "end": 195
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 196,
+    "end": 196
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 197,
+    "end": 197
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 198,
+    "end": 198
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 199,
+    "end": 199
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 200,
+    "end": 200
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 201,
+    "end": 201
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 202,
+    "end": 202
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 203,
+    "end": 203
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 204,
+    "end": 204
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 205,
+    "end": 205
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 206,
+    "end": 206
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 207,
+    "end": 207
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 208,
+    "end": 208
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 209,
+    "end": 209
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 210,
+    "end": 210
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 211,
+    "end": 211
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 212,
+    "end": 212
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 213,
+    "end": 213
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 214,
+    "end": 214
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 215,
+    "end": 215
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 216,
+    "end": 216
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 217,
+    "end": 217
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 218,
+    "end": 218
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 219,
+    "end": 219
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 220,
+    "end": 220
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 221,
+    "end": 221
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 222,
+    "end": 222
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 223,
+    "end": 223
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 224,
+    "end": 224
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 225,
+    "end": 225
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 226,
+    "end": 226
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 227,
+    "end": 227
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 228,
+    "end": 228
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 229,
+    "end": 229
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 230,
+    "end": 230
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 231,
+    "end": 231
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 232,
+    "end": 232
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 233,
+    "end": 233
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 234,
+    "end": 234
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 235,
+    "end": 235
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 236,
+    "end": 236
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 237,
+    "end": 237
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 238,
+    "end": 238
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 239,
+    "end": 239
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 240,
+    "end": 240
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 241,
+    "end": 241
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 242,
+    "end": 242
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 243,
+    "end": 243
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 244,
+    "end": 244
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 245,
+    "end": 245
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 246,
+    "end": 246
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 247,
+    "end": 247
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 248,
+    "end": 248
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 249,
+    "end": 249
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 250,
+    "end": 250
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 251,
+    "end": 251
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 252,
+    "end": 252
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 253,
+    "end": 253
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 254,
+    "end": 254
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 255,
+    "end": 255
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 256,
+    "end": 256
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 257,
+    "end": 257
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 258,
+    "end": 258
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 259,
+    "end": 259
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 260,
+    "end": 260
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 261,
+    "end": 261
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 262,
+    "end": 262
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 263,
+    "end": 263
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 264,
+    "end": 264
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 265,
+    "end": 265
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 266,
+    "end": 266
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 267,
+    "end": 267
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 268,
+    "end": 268
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 269,
+    "end": 269
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 270,
+    "end": 270
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 271,
+    "end": 271
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 272,
+    "end": 272
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 273,
+    "end": 273
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 274,
+    "end": 274
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 275,
+    "end": 275
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 276,
+    "end": 276
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 277,
+    "end": 277
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 278,
+    "end": 278
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 279,
+    "end": 279
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 280,
+    "end": 280
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 281,
+    "end": 281
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 282,
+    "end": 282
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 283,
+    "end": 283
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 284,
+    "end": 284
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 285,
+    "end": 285
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 286,
+    "end": 286
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 287,
+    "end": 287
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 288,
+    "end": 288
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 289,
+    "end": 289
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 290,
+    "end": 290
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 291,
+    "end": 291
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 292,
+    "end": 292
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 293,
+    "end": 293
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 294,
+    "end": 294
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 295,
+    "end": 295
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 296,
+    "end": 296
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 297,
+    "end": 297
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 298,
+    "end": 298
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 299,
+    "end": 299
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 300,
+    "end": 300
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 301,
+    "end": 301
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 302,
+    "end": 302
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "go_test_fail",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 303,
+    "end": 303
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 1,
+   "npm_error": 0,
+   "go_test_fail": 499,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 0,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 1,
+  "step_header": 0,
+  "observations": 501
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "lines_omitted",
+   "source_id": "failed.job_log",
+   "reason": "line_limit",
+   "count": 103,
+   "ranges": 1
+  },
+  {
+   "code": "context_omitted",
+   "source_id": "failed.job_log",
+   "line": 104,
+   "side": "before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 104,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 105,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 106,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 107,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 108,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 109,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 110,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 111,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 112,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 113,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 114,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 115,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 116,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 117,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 118,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 119,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 120,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 121,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 122,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 123,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 124,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 125,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 126,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 127,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 128,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 129,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 130,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 131,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 132,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 133,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 134,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 135,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 136,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 137,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 138,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 139,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 140,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 141,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 142,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 143,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 144,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 145,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 146,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 147,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 148,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 149,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 150,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 151,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 152,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 153,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 154,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 155,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 156,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 157,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 158,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 159,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 160,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 161,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 162,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 163,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 164,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 165,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 166,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 167,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 168,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 169,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 170,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 171,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 172,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 173,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 174,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 175,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 176,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 177,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 178,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 179,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 180,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 181,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 182,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 183,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 184,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 185,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 186,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 187,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 188,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 189,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 190,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 191,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 192,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 193,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 194,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 195,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 196,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 197,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 198,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 199,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 200,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 201,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 202,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 203,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 204,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 205,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 206,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 207,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 208,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 209,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 210,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 211,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 212,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 213,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 214,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 215,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 216,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 217,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 218,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 219,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 220,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 221,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 222,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 223,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 224,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 225,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 226,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 227,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 228,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 229,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 230,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 231,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 232,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 233,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 234,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 235,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 236,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 237,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 238,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 239,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 240,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 241,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 242,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 243,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 244,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 245,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 246,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 247,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 248,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 249,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 250,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 251,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 252,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 253,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 254,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 255,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 256,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 257,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 258,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 259,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 260,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 261,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 262,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 263,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 264,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 265,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 266,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 267,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 268,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 269,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 270,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 271,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 272,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 273,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 274,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 275,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 276,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 277,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 278,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 279,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 280,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 281,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 282,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 283,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 284,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 285,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 286,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 287,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 288,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 289,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 290,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 291,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 292,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 293,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 294,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 295,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 296,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 297,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 298,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 299,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 300,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 301,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 302,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 303,
+   "reason": "lines_omitted_before"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "observations_truncated",
+   "total": 501,
+   "listed": 200
+  }
+ ]
+}

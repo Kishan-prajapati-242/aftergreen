@@ -1,0 +1,162 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "b0c018af05a17dbfb5da7e7d060eda960c8e451c9b13a66c0d0b8ab8f3238dcb",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 230,
+  "included_lines": 92,
+  "omitted_lines": {
+   "outside_selected_span": 138,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 1,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 3,
+    "end": 3
+   }
+  },
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 6,
+    "end": 6
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 8,
+    "end": 8
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 6,
+    "end": 6
+   }
+  },
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 150,
+    "end": 150
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 212,
+    "end": 212
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 150,
+    "end": 150
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "gha_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 230,
+    "end": 230
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 150,
+    "end": 150
+   }
+  },
+  {
+   "kind": "nonzero_exit",
+   "exit_code": 1,
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 230,
+    "end": 230
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 150,
+    "end": 150
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 1,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 2,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 1,
+  "step_header": 4,
+  "observations": 8
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "lines_omitted",
+   "source_id": "failed.job_log",
+   "reason": "outside_selected_span",
+   "count": 138,
+   "ranges": 1
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

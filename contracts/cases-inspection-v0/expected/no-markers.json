@@ -1,0 +1,79 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "53837223cf34dca3ea7af896cbd039c98a049dda0bc5e2a5149302a7d8bb06e5",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 6,
+  "included_lines": 6,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 0,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 0,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 0,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 0,
+  "step_header": 1,
+  "observations": 1
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "no_markers",
+   "source_id": "failed.job_log"
+  }
+ ]
+}

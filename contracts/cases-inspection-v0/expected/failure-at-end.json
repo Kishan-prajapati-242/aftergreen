@@ -1,0 +1,139 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "190275db62d361af9777934844657a893eb3c7da5dba8c5597ccac3999b893bb",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 18,
+  "included_lines": 18,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 0,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 5,
+    "end": 5
+   }
+  },
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 9,
+    "end": 9
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 14,
+    "end": 14
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 9,
+    "end": 9
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "failed_count",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 16,
+    "end": 16
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 9,
+    "end": 9
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "gha_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 17,
+    "end": 17
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 9,
+    "end": 9
+   }
+  },
+  {
+   "kind": "nonzero_exit",
+   "exit_code": 1,
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 17,
+    "end": 17
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 9,
+    "end": 9
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 1,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 1,
+   "timeout": 0,
+   "failed_count": 1
+  },
+  "nonzero_exit": 1,
+  "step_header": 2,
+  "observations": 6
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

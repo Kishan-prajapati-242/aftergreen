@@ -1,0 +1,61 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "900158d517fe17c76170a210a6965e8c925dee3ea85abdd403e589c6ac7b33f3",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "missing",
+  "missing_reason": "access_denied"
+ },
+ "observations": [],
+ "counts": {
+  "error_marker": {
+   "gha_error": 0,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 0,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 0,
+  "step_header": 0,
+  "observations": 0
+ },
+ "limitations": [
+  {
+   "code": "log_missing",
+   "source_id": "failed.job_log",
+   "missing_reason": "access_denied"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

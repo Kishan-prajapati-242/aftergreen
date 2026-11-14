@@ -1,0 +1,99 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "8f57557a16229b501270071900e191033a4a475ba2e678e6f1a55ab7689e49dc",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "partial",
+  "line_count": 3,
+  "included_lines": 3,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 0,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 3,
+    "end": 3
+   },
+   "step_header": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 0,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 1,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 0,
+  "step_header": 1,
+  "observations": 2
+ },
+ "limitations": [
+  {
+   "code": "log_incomplete",
+   "source_id": "failed.job_log",
+   "extent": "partial"
+  },
+  {
+   "code": "line_may_be_cut",
+   "source_id": "failed.job_log",
+   "line": 3
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

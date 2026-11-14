@@ -7,6 +7,8 @@ Offline contracts for evidence bundles and comparison results. Nothing here touc
 | `bundle-v0.md` | Bundle contract v0: simulated evidence. Normative rules for limits, strict JSON, objects, line mapping, digest, error codes and pointers |
 | `bundle-v1.md` | Bundle contract v1: one failed job collected from a public repository. It shares v0's profile and adds collection, redaction and download claims |
 | `comparison-v0.md` | Comparison result contract v0, computed from a v0 bundle. v1 bundles are refused by name |
+| `inspection-v0.md` | Inspection result contract v0, computed from a v1 bundle: mechanical observations with line citations, and limitations. No log text, no cause |
+| `cases-inspection-v0/` | Synthetic v1 input bundles (`bundles/`) and their expected inspections (`expected/`), with the script that derived the expected files |
 | `cases/`, `cases-v1/` | Test bundles and a `manifest.json` per version, which states every case's expected result |
 | `go/` | Go module `aftergreen/contracts`: package `bundle` (`Validate`, `ValidateV1`, `DigestV1`) and the `aftergreen-validate` command. Standard library only |
 | `ts/` | TypeScript validators (`bundle.ts`, `bundle-v1.ts`) and `validate.ts`, for the built-in type stripping of Node 22.18 or later. No npm dependencies |
@@ -41,6 +43,17 @@ For example, from the repository root:
 (cd contracts/go && GOTOOLCHAIN=local go run ./cmd/aftergreen-validate -schema v1 ../cases-v1/valid-producer-fixture.json)
 node contracts/ts/validate.ts -schema v1 contracts/cases-v1/valid-producer-fixture.json
 ```
+
+## Inspection cases
+
+- **Input bundles** in `cases-inspection-v0/bundles/` come from the Go producer (`collector/logbundle`), applied to invented logs in `collector/inspect/cases_test.go`. They are labelled `simulated`. That test fails if a stored bundle no longer matches the producer's output.
+- **Expected results** in `cases-inspection-v0/expected/` are derived by `cases-inspection-v0/oracle.py`, a separate Python implementation of the contract. The first eleven were derived before the Go inspector was written. After review, both implementations were changed to follow the revised contract, and the oracle derived every file again; only `partial-log` changed, and `no-observations` was added. Later, the producer's step spans ([docs/collector.md](../docs/collector.md)) changed one input bundle, `ambiguous-steps`, which now includes lines 150–208. The oracle derived every file again, and only `expected/ambiguous-steps.json` changed. Its observations at lines 212 and 230, undetermined before, now cite the header-shaped line at 150. That case no longer hides a header in an omitted gap; `failure-in-middle` and `redacted-and-long` still leave a step undetermined because of omitted lines:
+
+  ```sh
+  python3 -I contracts/cases-inspection-v0/oracle.py
+  ```
+
+- **Tests:** the Go tests in `collector/inspect` require the inspector to reproduce every expected file, and its verifier to accept each one and to reject forged variants.
 
 ## Case manifest
 

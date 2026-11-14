@@ -93,7 +93,8 @@ type jobLogOut struct {
 
 // checkReasons re-derives every omitted line's exact reason from the line's
 // own properties and fails on any other reason, or on an included line that
-// may not be included.
+// may not be included: one that is not a candidate must lie in a complete
+// step span (stepSpanLines).
 func checkReasons(t *testing.T, in Input, opt Options, j jobLogOut) {
 	t.Helper()
 	_, lines, err := prepareLog(in.Log, opt)
@@ -101,7 +102,9 @@ func checkReasons(t *testing.T, in Input, opt Options, j jobLogOut) {
 		t.Fatal(err)
 	}
 	rank := rankLines(lines).rank
-	for n, f := range account(t, j) {
+	fate := account(t, j)
+	inSpan := stepSpanLines(lines, rank, fate)
+	for n, f := range fate {
 		l := lines[n-1]
 		want := "line_limit"
 		switch {
@@ -113,7 +116,7 @@ func checkReasons(t *testing.T, in Input, opt Options, j jobLogOut) {
 			want = "line_too_long"
 		}
 		if f == "included" {
-			if want != "line_limit" {
+			if want != "line_limit" && (want != "outside_selected_span" || !inSpan[n]) {
 				t.Fatalf("line %d is included, but its reason would be %s", n, want)
 			}
 			continue
@@ -122,6 +125,30 @@ func checkReasons(t *testing.T, in Input, opt Options, j jobLogOut) {
 			t.Fatalf("line %d is %s, but its exact reason is %s", n, f, want)
 		}
 	}
+}
+
+var testTimestampRE = regexp.MustCompile(`^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,9})?Z `)
+
+// stepSpanLines marks the lines of every complete step span: for each
+// included failure line (rank 0), the lines back to the nearest step header
+// at or before it, when all of them are included. It is written apart from
+// rankLines, from the rule in select.go.
+func stepSpanLines(lines []lineDoc, rank []int, fate map[int64]string) map[int64]bool {
+	out := map[int64]bool{}
+	for n := int64(1); n <= int64(len(lines)); n++ {
+		if rank[n-1] != 0 || fate[n] != "included" {
+			continue
+		}
+		for k := n; k >= 1 && fate[k] == "included"; k-- {
+			if strings.HasPrefix(testTimestampRE.ReplaceAllString(lines[k-1].text, ""), "##[group]Run ") {
+				for i := k; i <= n; i++ {
+					out[i] = true
+				}
+				break
+			}
+		}
+	}
+	return out
 }
 
 func mustBuild(t *testing.T, in Input, opt Options) ([]byte, *Summary, jobLogOut) {
@@ -1104,6 +1131,9 @@ func FuzzBuild(f *testing.F) {
 		both = append(both, "Error: "+strings.Repeat("a", 993), "Error: "+strings.Repeat("b", 2100))
 	}
 	f.Add(joinLines(both))
+	// Step spans: one that is added, and one that a withheld line blocks.
+	f.Add(joinLines(stepLog(200, map[int]string{30: header("npm test"), 60: "Error: x", 90: exitLine})))
+	f.Add(joinLines(stepLog(120, map[int]string{30: header("deploy"), 50: "-----BEGIN RSA PRIVATE KEY-----", 51: "-----END RSA PRIVATE KEY-----", 90: exitLine})))
 	f.Fuzz(func(t *testing.T, raw []byte) {
 		out, sum, err := Build(logInput(raw), testOpt)
 		if errors.Is(err, ErrRangeLimit) {

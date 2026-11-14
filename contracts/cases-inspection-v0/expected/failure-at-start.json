@@ -1,0 +1,105 @@
+{
+ "schema": "aftergreen.inspection.v0",
+ "bundle_schema": "aftergreen.bundle.v1",
+ "bundle_evidence_sha256": "2f9edc411b43d083c2f899c4cd1ffa41a8a86a1badea957641c0ad5e49bc5b77",
+ "evidence_class": "simulated",
+ "job_log": {
+  "source_id": "failed.job_log",
+  "status": "present",
+  "extent": "complete",
+  "line_count": 7,
+  "included_lines": 7,
+  "omitted_lines": {
+   "outside_selected_span": 0,
+   "line_too_long": 0,
+   "line_limit": 0,
+   "redacted": 0
+  },
+  "omitted_ranges": 0,
+  "inline_redactions": 0
+ },
+ "observations": [
+  {
+   "kind": "error_marker",
+   "marker": "error_line",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 1,
+    "end": 1
+   }
+  },
+  {
+   "kind": "error_marker",
+   "marker": "gha_error",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 2,
+    "end": 2
+   }
+  },
+  {
+   "kind": "step_header",
+   "citation": {
+    "source_id": "failed.job_log",
+    "start": 3,
+    "end": 3
+   }
+  }
+ ],
+ "counts": {
+  "error_marker": {
+   "gha_error": 1,
+   "npm_error": 0,
+   "go_test_fail": 0,
+   "pytest_failed": 0,
+   "python_traceback": 0,
+   "go_panic": 0,
+   "error_line": 1,
+   "timeout": 0,
+   "failed_count": 0
+  },
+  "nonzero_exit": 0,
+  "step_header": 1,
+  "observations": 3
+ },
+ "limitations": [
+  {
+   "code": "source_missing",
+   "source_id": "failed.lockfile",
+   "kind": "lockfile",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.manifest",
+   "kind": "manifest",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "source_missing",
+   "source_id": "failed.workflow",
+   "kind": "workflow_file",
+   "missing_reason": "not_collected"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 1,
+   "reason": "no_step_header_before"
+  },
+  {
+   "code": "step_undetermined",
+   "source_id": "failed.job_log",
+   "line": 2,
+   "reason": "no_step_header_before"
+  },
+  {
+   "code": "checkout_unresolved",
+   "reason": "workflow_not_collected"
+  },
+  {
+   "code": "matrix_unresolved",
+   "reason": "workflow_not_collected"
+  }
+ ]
+}

@@ -56,8 +56,12 @@ type Options struct {
 	Tool          string    // collection.tool
 	APIVersion    string    // collection.api_version: the REST API version requested
 	CreatedAt     time.Time // created_at, truncated to the second
+	// Audit adds a selection audit (audit.go) to the summary: counts and
+	// capped line numbers only.
+	Audit bool
 
 	noRedaction bool // tests only: a negative control with redaction off
+	noStepSpans bool // tests only: the selection without step spans, for comparison
 }
 
 // Summary describes a built bundle with counts only, never its text.
@@ -68,6 +72,8 @@ type Summary struct {
 	JobLog         LogSummary `json:"job_log"`
 	MissingSources []string   `json:"missing_sources"`
 	Unresolved     []string   `json:"unresolved"`
+	// Audit is set when Options.Audit is and the log was obtained.
+	Audit *Audit `json:"selection_audit,omitempty"`
 }
 
 // LogSummary counts what happened to the job log's lines.
@@ -217,18 +223,21 @@ func Build(in Input, opt Options) ([]byte, *Summary, error) {
 	if in.Log.Obtained {
 		rk = rankLines(lines)
 	}
+	var chosen []decision // the selection of the bundle being built
 	for _, budget := range lineBudgets() {
 		job := logSrc
+		dropped := 0
 		if in.Log.Obtained {
 			dec := rk.admit(budget)
-			dropped, ok := fitRanges(dec, rk.rank)
-			if !ok {
+			var ok bool
+			if dropped, ok = fitRanges(dec, rk.rank); !ok {
 				continue // the exact reasons need more ranges with this selection: try a smaller one
 			}
 			if job, err = presentLog(logSrc, lines, dec, sum); err != nil {
 				return nil, nil, err
 			}
 			sum.JobLog.DroppedToFitRanges = dropped
+			chosen = dec
 		}
 		doc.Sources = append([]sourceJSON{job}, others...)
 		doc.EvidenceSHA256 = zeroDigest
@@ -238,6 +247,19 @@ func Build(in Input, opt Options) ([]byte, *Summary, error) {
 		}
 		if len(raw) > bundle.MaxInputBytes {
 			continue // fewer lines next time
+		}
+		// This selection fits; step spans are added to it if they fit too.
+		if in.Log.Obtained && dropped == 0 && !opt.noStepSpans && rk.addStepSpans(lines, chosen, budget, len(raw)) > 0 {
+			if job, err = presentLog(logSrc, lines, chosen, sum); err != nil {
+				return nil, nil, err
+			}
+			doc.Sources = append([]sourceJSON{job}, others...)
+			if raw, err = encode(doc); err != nil {
+				return nil, nil, err
+			}
+			if len(raw) > bundle.MaxInputBytes {
+				return nil, nil, fmt.Errorf("the producer's step spans made a bundle of %d bytes, over %d; this is a defect", len(raw), bundle.MaxInputBytes) // addStepSpans bounds the size
+			}
 		}
 		digest, r := bundle.DigestV1(raw)
 		if !r.Accepted() {
@@ -254,6 +276,9 @@ func Build(in Input, opt Options) ([]byte, *Summary, error) {
 			return nil, nil, fmt.Errorf("the built bundle failed validation: %s at %s", v.Code, v.Pointer)
 		}
 		sum.Bytes, sum.EvidenceSHA256 = len(raw), digest
+		if opt.Audit && in.Log.Obtained {
+			sum.Audit = auditOf(lines, chosen) // once, for the selection returned
+		}
 		return raw, sum, nil
 	}
 	// Every budget failed. The last one tried, 0, includes no line, and with
@@ -324,7 +349,7 @@ func prepareLog(lg Log, opt Options) (sourceJSON, []lineDoc, error) {
 	}
 	for i, t := range texts {
 		// A withheld line, or one too long to include, is never scanned.
-		l := lineDoc{text: t, withheld: withheld != nil && withheld[i]}
+		l := lineDoc{text: t, clean: t, withheld: withheld != nil && withheld[i]}
 		if !l.withheld && len(t) <= maxLineBytes && !opt.noRedaction {
 			l.text, l.counts = redactLine(t)
 			if hidden(t, plain[i]) {
